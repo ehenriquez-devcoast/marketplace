@@ -1,1 +1,247 @@
-/* You can add global styles to this file, and also import other style files */
+/** COLORES */
+:root {
+  --color-aquatic: #00b8ce;
+  --color-beast: #ffb812;
+  --color-bug: #ff5341;
+  --color-bird: #ff8bbd;
+  --color-plant: #6cc000;
+  --color-reptile: #dc8be4;
+  --color-hidden-1: #c6bdd4;
+  --color-hidden-2: #beceff;
+  --color-hidden-3: #129092;
+  --color-axie: #8d65ff;
+  --color-savannah: #f99e2e;
+  --color-forest: #6cc000;
+  --color-arctic: #dbf0ef;
+  --color-mystic: #6fccd4;
+  --color-genesis: #3e7292;
+  --color-rarity-rare: #09b99b;
+  --color-rariry-epic: #ffa22a;
+  --color-rarity-mystic: #ae2aff;
+  --color-text-arctic: #55586a;
+  --color-white: #fff;
+  --color-gray-1: #a1a6b6;
+  --color-gray-2: #6b7185;
+  --color-gray-3: #3a3f50;
+  --color-gray-4: #282b39;
+  --color-gray-5: #242735;
+  --color-gray-6: #11131b;
+  --color-black: #000;
+  --color-primary-1: #99c1f8;
+  --color-primary-2: #6ea7f5;
+  --color-primary-3: #3082f2;
+  --color-primary-4: #046cfc;
+  --color-primary-5: #004eba;
+  --color-primary-6: #1c2f50;
+  --color-success-1: #b8ecd5;
+  --color-success-2: #8ae0ba;
+  --color-success-3: #58d49d;
+  --color-success-4: #10c274;
+  --color-success-5: #048a4f;
+  --color-warning-1: #fce2ac;
+  --color-warning-2: #fad076;
+  --color-warning-3: #f8bc3b;
+  --color-warning-4: #f7ac0a;
+  --color-warning-5: #bd850f;
+  --color-danger-1: #feb4b6;
+  --color-danger-2: #f28286;
+  --color-danger-3: #fe4c52;
+  --color-danger-4: #fe383f;
+  --color-danger-5: #be3637;
+  --shadow-4: 0px 3px 8px 0px rgba(17, 19, 27, 0.3);
+  --space-0: 0px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-36: 36px;
+  --space-40: 40px;
+  --font-size-10: 10px;
+  --font-size-12: 12px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-28: 28px;
+  --font-size-40: 40px;
+  --line-height-14: 14px;
+}
+
+/*--------------------------------------- RESETEANDO VALORES DEL NAVEGADOR ----------------------------------------------*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+*,
+*:focus,
+*:hover {
+  outline: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colors to suit your needs */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colors to suit your needs */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border color to suit your needs */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input,
+select {
+  vertical-align: middle;
+}
+
+/*--------------------------------------- // RESETEANDO VALORES DEL NAVEGADOR ----------------------------------------------*/
