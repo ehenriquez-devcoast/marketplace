@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,12 +18,23 @@ import { ItemDetailsComponent } from './routes/item-details/item-details.compone
 import { BundleDetailsComponent } from './routes/bundle-details/bundle-details.component';
 import { InfoVolumeComponent } from './components/info-volume/info-volume.component';
 
-
 @NgModule({
-  declarations: [IndexComponent, DashboardComponent, MarketplaceComponent, ProfileComponent, LandComponent, ItemComponent, BundleComponent, DetailsComponent, RecentlyListedComponent, RecentlySoldComponent, LandDetailsComponent, ItemDetailsComponent, BundleDetailsComponent, InfoVolumeComponent],
-  imports: [
-    CommonModule,
-    WebsiteRoutingModule
-  ]
+  declarations: [
+    IndexComponent,
+    DashboardComponent,
+    MarketplaceComponent,
+    ProfileComponent,
+    LandComponent,
+    ItemComponent,
+    BundleComponent,
+    DetailsComponent,
+    RecentlyListedComponent,
+    RecentlySoldComponent,
+    LandDetailsComponent,
+    ItemDetailsComponent,
+    BundleDetailsComponent,
+    InfoVolumeComponent,
+  ],
+  imports: [CommonModule, WebsiteRoutingModule, SharedModule],
 })
-export class WebsiteModule { }
+export class WebsiteModule {}
