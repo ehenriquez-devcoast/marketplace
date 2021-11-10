@@ -1,0 +1,20 @@
+.form-floating > .form-control,
+.__button-metamask {
+  color: white;
+  background-color: var(--color-gray-6);
+}
+
+.form-floating > .form-control:focus,
+#floatingInput {
+  box-shadow: none;
+  border-color: white;
+}
+
+.form-check-input,
+.form-check-label {
+  cursor: pointer;
+}
+
+.form-check-input[type="checkbox"] {
+  margin-right: 10px;
+}

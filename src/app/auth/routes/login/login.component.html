@@ -1,1 +1,79 @@
-<p>login works!</p>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card bg-transparent border-0 col-lg-4 col-12 text-center">
+    <div class="card-body">
+      <button
+        class="
+          align-items-center
+          w-100
+          btn
+          mb-3
+          btn-primary
+          border-1 border-white
+          text-white
+          d-flex
+        "
+      >
+        <img src="assets/images/metamask.svg" class="mr-3" alt="" />
+        <span class="w-100 text-center"> Login with Metamask </span>
+      </button>
+      <span class="text-white">Or</span>
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="form-floating my-3 text-white">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+            formControlName="email"
+          />
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div
+          class="
+            form-check
+            __remember
+            mt-3
+            d-flex
+            justify-content-between
+            align-items-center
+          "
+        >
+          <!-- RECUERDAME -->
+          <div class="d-flex align-items-center">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Remember me
+            </label>
+          </div>
+          <!-- RECUERDAME -->
+          <!-- OLVIDÉ LA CONTRASEÑA -->
+          <a
+            href="https://www.youtube.com/watch?v=ZhFm7MFtkVg&t=124s&ab_channel=ReinelexMusic"
+            >Forgot password?</a
+          >
+          <!-- // OLVIDÉ LA CONTRASEÑA -->
+        </div>
+        <!-- ENVIAR -->
+        <button type="submit" class="btn btn-primary mt-3 w-100">
+          Sign in
+        </button>
+        <!-- // ENVIAR -->
+      </form>
+    </div>
+  </div>
+</div>
