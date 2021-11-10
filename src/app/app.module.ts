@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WINDOW } from '@ng-toolkit/universal';
 
 @NgModule({
   declarations: [AppComponent],
@@ -11,7 +10,7 @@ import { WINDOW } from '@ng-toolkit/universal';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
   ],
-  providers: [{ provide: WINDOW, useValue: {} }],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

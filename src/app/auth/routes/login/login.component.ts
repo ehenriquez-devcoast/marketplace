@@ -7,8 +7,12 @@ import {
   FormControl,
 } from '@angular/forms';
 
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { WINDOW } from '@ng-toolkit/universal';
+import {
+  isPlatformBrowser,
+  isPlatformServer,
+  Location,
+  DOCUMENT,
+} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -23,9 +27,22 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _formbuilder: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(WINDOW) private window: Window
-  ) {}
+    @Inject(PLATFORM_ID) private _platformId: Object
+  ) {
+    /**
+     * Esta validación sirve para saber de donde se está ejecutando el código, si está desde el navegador o desde el servidor
+     */
+    if (isPlatformBrowser(this._platformId)) {
+      // Client side code.
+      if (typeof window['ethereum'] !== 'undefined') {
+        console.log('MetaMask is installed!');
+      }
+    }
+    if (isPlatformServer(this._platformId)) {
+      // Server side code.
+      // https://github.com/angular/universal#universal-gotchas
+    }
+  }
 
   ngOnInit(): void {
     this.initFormLogin();
