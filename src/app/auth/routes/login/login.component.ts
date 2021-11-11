@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 import {
   FormGroup,
   FormBuilder,
@@ -14,6 +15,8 @@ import {
   DOCUMENT,
 } from '@angular/common';
 
+import { ethers } from 'ethers';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,6 +28,14 @@ export class LoginComponent implements OnInit {
    */
   loginForm: FormGroup;
 
+  /**
+   * Ether
+   */
+  provider: any;
+  signer: any;
+
+  dabi = [];
+
   constructor(
     private _formbuilder: FormBuilder,
     @Inject(PLATFORM_ID) private _platformId: Object
@@ -35,6 +46,14 @@ export class LoginComponent implements OnInit {
     if (isPlatformBrowser(this._platformId)) {
       // Client side code.
       if (typeof window['ethereum'] !== 'undefined') {
+        /**
+         * Obteniendo el proveedor de la cuenta. Un proveedor en ethers es una abstracción de solo lectura para acceder a los datos de blockchain.
+         */
+        this.provider = new ethers.providers.JsonRpcProvider(
+          'HTTP://127.0.0.1:7545'
+        );
+        // Para esto, necesitamos el firmante de la cuenta ...
+        this.signer = this.provider.getSigner();
         console.log('MetaMask is installed!');
       }
     }
@@ -79,4 +98,20 @@ export class LoginComponent implements OnInit {
   submit() {
     console.log(this.loginForm.value);
   }
+
+  /**
+   * Login metamask
+   */
+  async singUpMetamask() {
+    alert('Mientras nos dan las rutas del back, esto está inhabilitado');
+  }
 }
+
+/**
+ * Otras ayudas:
+ * Obtenemos la cantidad de eth de una cartera
+ * const res = await this.provider.getBalance(
+      '0x2023FBD87a82D120fD139e33aFe43371d868D679'
+    );
+ * 
+ */

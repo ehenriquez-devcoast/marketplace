@@ -1,7 +1,9 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card bg-transparent border-0 col-lg-4 col-12 text-center">
     <div class="card-body">
+      <!-- INICIAR SESIÓN CON METAMASK -->
       <button
+        (click)="singUpMetamask()"
         class="
           align-items-center
           w-100
@@ -16,6 +18,8 @@
         <img src="assets/images/metamask.svg" class="mr-3" alt="" />
         <span class="w-100 text-center"> Login with Metamask </span>
       </button>
+      <!-- // INICIAR SESIÓN CON METAMASK -->
+      <!-- INICIAR SESIÓN CON EL CORREO Y CONTRASEÑA -->
       <span class="text-white">Or</span>
       <form [formGroup]="loginForm" (ngSubmit)="submit()">
         <div class="form-floating my-3 text-white">
@@ -74,6 +78,7 @@
         </button>
         <!-- // ENVIAR -->
       </form>
+      <!-- // INICIAR SESIÓN CON EL CORREO Y CONTRASEÑA -->
     </div>
   </div>
 </div>
