@@ -1,3 +1,175 @@
-<div class="card bg-transparent w-100">
-  <div class="card-body">This is some text within a card body.</div>
+<div class="w-100">
+  <div class="d-flex justify-content-center">
+    <div class="card bg-transparent col-lg-11 col-12">
+      <div class="card-body p-0">
+        <!-- BOTONES PARA ESCOGER ENTRE 24H / 7DAYS / 30 DAYS -->
+        <div
+          class="
+            btn-group
+            w-100
+            d-flex
+            justify-content-lg-start justify-content-center
+          "
+          role="group"
+          aria-label="Basic example"
+        >
+          <!-- VERSION ESCRITORIO -->
+          <div class="d-lg-block d-none">
+            <button
+              type="button"
+              class="btn py-3 px-4 bg-transparent text-white border-0 rounded-0"
+              (click)="getValue(1)"
+              [ngClass]="{
+                '__btn-rayaPiso ': dateData == 1
+              }"
+            >
+              Last 24h
+            </button>
+            <button
+              type="button"
+              class="btn py-3 px-4 bg-transparent text-white border-0 rounded-0"
+              (click)="getValue(2)"
+              [ngClass]="{
+                '__btn-rayaPiso ': dateData == 2
+              }"
+            >
+              7 days
+            </button>
+            <button
+              type="button"
+              class="btn py-3 px-4 bg-transparent text-white border-0 rounded-0"
+              (click)="getValue(3)"
+              [ngClass]="{
+                '__btn-rayaPiso ': dateData == 3
+              }"
+            >
+              30 days
+            </button>
+          </div>
+          <!-- // VERSION ESCRITORIO -->
+          <!-- VERSION RESPONSIVE -->
+          <button
+            type="button"
+            class="
+              btn
+              d-lg-none d-block
+              bg-transparent
+              text-white
+              border-0
+              rounded-0
+            "
+            (click)="getValue(1)"
+            [ngClass]="{
+              '__btn-rayaPiso ': dateData == 1
+            }"
+          >
+            Last 24h
+          </button>
+          <button
+            type="button"
+            class="
+              btn
+              d-lg-none d-block
+              bg-transparent
+              text-white
+              border-0
+              rounded-0
+            "
+            (click)="getValue(2)"
+            [ngClass]="{
+              '__btn-rayaPiso ': dateData == 2
+            }"
+          >
+            7 days
+          </button>
+          <button
+            type="button"
+            class="
+              btn
+              d-lg-none d-block
+              bg-transparent
+              text-white
+              border-0
+              rounded-0
+            "
+            (click)="getValue(3)"
+            [ngClass]="{
+              '__btn-rayaPiso ': dateData == 3
+            }"
+          >
+            30 days
+          </button>
+          <!--// VERSION RESPONSIVE -->
+        </div>
+        <!-- // BOTONES PARA ESCOGER ENTRE 24H / 7DAYS / 30 DAYS -->
+        <!-- INFORMACIÓN DEL TOTAL SALE / TOTAL VOLUMEN / SOLD  -->
+        <div
+          class="
+            justify-content-start
+            d-flex
+            justify-content-lg-around
+            flex-wrap
+            __info
+            text-uppercase
+            p-lg-5 p-4
+          "
+        >
+          <!-- DATOS DE TOTAL VENTAS -->
+          <div class="__info-totalSale d-flex flex-wrap">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+              <g fill="none" fill-rule="evenodd">
+                <circle fill="#2BBAA7" cx="25" cy="25" r="25"></circle>
+                <path
+                  d="M38.344 32.5c.36 0 .656.295.656.656v2.188c0 .36-.295.656-.656.656H11.656a.658.658 0 01-.656-.656V15.656c0-.36.295-.656.656-.656h2.188c.36 0 .656.295.656.656V32.5h23.844zm-6.962-12.277l-4.632 3.09-4.665-6.218a.657.657 0 00-1.088.054l-4.747 7.913v5.688h21l-4.916-10.27a.656.656 0 00-.952-.257z"
+                  fill="#FFF"
+                  fill-rule="nonzero"
+                ></path>
+              </g>
+            </svg>
+            <div class="d-flex flex-column __info-datos align-items-start">
+              <label class="__info-title_info">total sale</label>
+              <label class="__info-value-info mt-auto">64,211</label>
+            </div>
+          </div>
+          <!-- // DATOS DE TOTAL VENTAS -->
+          <!-- DATOS DE VOLUMEN TOTAL DE ETHEREUM -->
+          <div class="__info-totalVolumen d-flex flex-wrap mt-lg-0 mt-4">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+              <g fill="none" fill-rule="evenodd">
+                <circle fill="#4D70E7" cx="25" cy="25" r="25"></circle>
+                <path
+                  d="M33.62 25.262l-8.307 5.075L17 25.262 25.313 11l8.307 14.262zm-8.307 6.705L17 26.892 25.313 39l8.312-12.108-8.313 5.075z"
+                  fill="#FFF"
+                  fill-rule="nonzero"
+                ></path>
+              </g>
+            </svg>
+            <div class="d-flex flex-column __info-datos align-items-start">
+              <label class="__info-title_info">total volumen</label>
+              <div class="mt-auto">
+                <label class="__info-value-info fw-bold">Ξ</label>
+                <label class="__info-value-info mx-1">4,8212</label>
+                <label class="millons mx-1">$20.11m</label>
+              </div>
+            </div>
+          </div>
+          <!-- // DATOS DE VOLUMEN TOTAL DE ETHEREUM -->
+          <!-- DATOS TOTAL DEL TOTAL DE ANFRI VENDIDOS -->
+          <div class="__info-sold d-flex flex-wrap mt-lg-0 mt-4">
+            <img
+              src="https://marketplace.axieinfinity.com/static/image/axie-sold.png"
+              alt=""
+              style="height: 50px; width: 50px"
+            />
+            <div class="d-flex flex-column __info-datos align-items-start">
+              <label class="__info-title_info">axie sold</label>
+              <label class="__info-value-info mt-auto">64,211</label>
+            </div>
+          </div>
+          <!-- DATOS TOTAL DEL TOTAL DE ANFRI VENDIDOS -->
+        </div>
+        <!-- INFORMACIÓN DEL TOTAL SALE / TOTAL VOLUMEN / SOLD  -->
+      </div>
+    </div>
+  </div>
 </div>

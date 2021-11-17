@@ -1,3 +1,54 @@
 .card {
   border-color: var(--color-gray-3);
 }
+
+.btn-group {
+  border-bottom: 1px solid;
+  border-color: var(--color-gray-3);
+}
+
+.btn-group .btn {
+  border-color: var(--color-primary-4) !important;
+}
+
+.btn-check:focus + .btn,
+.btn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.__btn-rayaPiso {
+  border-bottom: 3px solid !important;
+}
+
+.__info-title_info {
+  color: var(--color-gray-1);
+
+  font-size: var(--font-size-10);
+}
+
+.__info-value-info {
+  font-size: var(--font-size-28);
+}
+
+.__info-datos {
+  margin-left: 30px;
+}
+
+.millons {
+  color: var(--color-gray-1);
+  font-size: var(--font-size-20);
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (max-width: 991px) {
+  .__info-value-info {
+    font-size: var(--font-size-20);
+  }
+
+  .millons {
+    color: var(--color-gray-1);
+
+    font-size: var(--font-size-16);
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import {
   FormGroup,
@@ -8,12 +8,7 @@ import {
   FormControl,
 } from '@angular/forms';
 
-import {
-  isPlatformBrowser,
-  isPlatformServer,
-  Location,
-  DOCUMENT,
-} from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 import { ethers } from 'ethers';
 
@@ -29,12 +24,53 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   /**
-   * Ether
+   * prveedor
    */
   provider: any;
+
+  /**
+   * Firma
+   */
   signer: any;
 
-  dabi = [];
+  /**
+   * Nombre de la billetera
+   */
+  nameSigner: string;
+
+  /**
+   * Dirección de la billetera
+   */
+  addressWallet: string;
+
+  /**
+   * Interface para el contrato
+   */
+  iface = [
+    // Constructor
+    'constructor(string symbol, string name)',
+
+    // State mutating method
+    'function transferFrom(address from, address to, uint amount)',
+
+    // State mutating method, which is payable
+    'function mint(uint amount) payable',
+
+    // Constant method (i.e. "view" or "pure")
+    'function balanceOf(address owner) view returns (uint)',
+
+    // An Event
+    'event Transfer(address indexed from, address indexed to, uint256 amount)',
+
+    // A Custom Solidity Error
+    'error AccountLocked(address owner, uint256 balance)',
+
+    // Examples with structured types
+    'function addUser(tuple(string name, address addr) user) returns (uint id)',
+    'function addUsers(tuple(string name, address addr)[] user) returns (uint[] id)',
+    'function getUser(uint id) view returns (tuple(string name, address addr) user)',
+  ];
+  interfaceContract: any;
 
   constructor(
     private _formbuilder: FormBuilder,
@@ -52,6 +88,10 @@ export class LoginComponent implements OnInit {
         this.provider = new ethers.providers.JsonRpcProvider(
           'HTTP://127.0.0.1:7545'
         );
+        /**
+         * Obteniendo la interface del contrato
+         */
+        this.interfaceContract = new ethers.utils.Interface(this.iface);
         // Para esto, necesitamos el firmante de la cuenta ...
         this.signer = this.provider.getSigner();
         console.log('MetaMask is installed!');
@@ -65,6 +105,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initFormLogin();
+    this.eventoMetamaskEthers();
   }
 
   /**
@@ -103,8 +144,46 @@ export class LoginComponent implements OnInit {
    * Login metamask
    */
   async singUpMetamask() {
-    alert('Mientras nos dan las rutas del back, esto está inhabilitado');
+    // await window['ethereum'].request({ method: 'eth_requestAccounts' });
+    this.signer.connect();
   }
+
+  /**
+   * Obteniendo la dirección de la billetera
+   */
+  async eventoMetamaskEthers() {
+    // this.provider.getCode();
+    await this.signer
+      .getAddress()
+      .then((data) => {
+        this.getNameAddres(data);
+        // this.addressWallet = data;
+        console.log(data);
+        // console.log(this.nameSigner);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  /**
+   * Obtener el nombre de una direcicón
+   */
+  async getNameAddres(address) {
+    // await this.provider
+    //   .getBalance(address)
+    //   .then((data) => {
+    //     console.log(data);
+    //     this.nameSigner = data;
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  }
+}
+
+interface ConnectInfo {
+  chainId: string;
 }
 
 /**
