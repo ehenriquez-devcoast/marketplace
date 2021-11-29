@@ -9,6 +9,7 @@
 
 .btn-group .btn {
   border-color: var(--color-primary-4) !important;
+  color: var(--color-gray-1);
 }
 
 .btn-check:focus + .btn,
@@ -19,6 +20,7 @@
 
 .__btn-rayaPiso {
   border-bottom: 3px solid !important;
+  color: var(--color-white) !important;
 }
 
 .__info-title_info {

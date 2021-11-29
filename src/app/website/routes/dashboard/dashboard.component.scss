@@ -1,10 +1,26 @@
 .__contenedor-data {
   padding-top: 7%;
+  padding-bottom: 7%;
 }
 
+.__contenedor-shop .__contenedor-listed {
+  padding-right: 10px;
+}
+
+.__contenedor-shop .__contenedor-shop {
+  padding-left: 10px;
+}
 /* // Medium devices (tablets, 768px and up) */
 @media (max-width: 991px) {
   .__contenedor-data {
     padding-top: 28%;
+  }
+
+  .__contenedor-shop .__contenedor-listed {
+    padding-right: 0px;
+  }
+
+  .__contenedor-shop .__contenedor-shop {
+    padding-left: 0px;
   }
 }

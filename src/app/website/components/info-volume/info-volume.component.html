@@ -1,6 +1,6 @@
 <div class="w-100">
   <div class="d-flex justify-content-center">
-    <div class="card bg-transparent col-lg-11 col-12">
+    <div class="card bg-transparent col-12">
       <div class="card-body p-0">
         <!-- BOTONES PARA ESCOGER ENTRE 24H / 7DAYS / 30 DAYS -->
         <div
@@ -17,7 +17,7 @@
           <div class="d-lg-block d-none">
             <button
               type="button"
-              class="btn py-3 px-4 bg-transparent text-white border-0 rounded-0"
+              class="btn py-3 px-4 bg-transparent border-0 rounded-0"
               (click)="getValue(1)"
               [ngClass]="{
                 '__btn-rayaPiso ': dateData == 1
@@ -27,7 +27,7 @@
             </button>
             <button
               type="button"
-              class="btn py-3 px-4 bg-transparent text-white border-0 rounded-0"
+              class="btn py-3 px-4 bg-transparent border-0 rounded-0"
               (click)="getValue(2)"
               [ngClass]="{
                 '__btn-rayaPiso ': dateData == 2
@@ -37,7 +37,7 @@
             </button>
             <button
               type="button"
-              class="btn py-3 px-4 bg-transparent text-white border-0 rounded-0"
+              class="btn py-3 px-4 bg-transparent border-0 rounded-0"
               (click)="getValue(3)"
               [ngClass]="{
                 '__btn-rayaPiso ': dateData == 3
@@ -50,14 +50,7 @@
           <!-- VERSION RESPONSIVE -->
           <button
             type="button"
-            class="
-              btn
-              d-lg-none d-block
-              bg-transparent
-              text-white
-              border-0
-              rounded-0
-            "
+            class="btn d-lg-none d-block bg-transparent border-0 rounded-0"
             (click)="getValue(1)"
             [ngClass]="{
               '__btn-rayaPiso ': dateData == 1
@@ -67,14 +60,7 @@
           </button>
           <button
             type="button"
-            class="
-              btn
-              d-lg-none d-block
-              bg-transparent
-              text-white
-              border-0
-              rounded-0
-            "
+            class="btn d-lg-none d-block bg-transparent border-0 rounded-0"
             (click)="getValue(2)"
             [ngClass]="{
               '__btn-rayaPiso ': dateData == 2
@@ -84,14 +70,7 @@
           </button>
           <button
             type="button"
-            class="
-              btn
-              d-lg-none d-block
-              bg-transparent
-              text-white
-              border-0
-              rounded-0
-            "
+            class="btn d-lg-none d-block bg-transparent border-0 rounded-0"
             (click)="getValue(3)"
             [ngClass]="{
               '__btn-rayaPiso ': dateData == 3
@@ -111,7 +90,9 @@
             flex-wrap
             __info
             text-uppercase
-            p-lg-5 p-4
+            py-lg-5
+            px-lg-0
+            p-4
           "
         >
           <!-- DATOS DE TOTAL VENTAS -->

@@ -1,9 +1,33 @@
 <div class="container __contenedor w-100">
   <div class="__contenedor-data">
     <app-info-volume></app-info-volume>
-    <div class="d-flex mt-5 flex-lg-row flex-column">
-      <app-recently-listed></app-recently-listed>
-      <app-recently-sold></app-recently-sold>
+    <div class="mt-5 d-flex justify-content-center">
+      <!-- <ul class="list-group list-group-horizontal col-12">
+        <li class="list-group-item bg-transparent w-100">
+          <app-recently-listed></app-recently-listed>
+        </li>
+        <li class="list-group-item bg-transparent w-100">
+          <app-recently-sold></app-recently-sold>
+        </li>
+      </ul> -->
+      <div
+        class="
+          col-12
+          d-flex
+          __contenedor-shop
+          justify-content-between
+          flex-wrap
+        "
+      >
+        <div class="col-lg-6 col-12 __contenedor-listed">
+          <label for="" class="mb-2 text-white h4">Recently listed</label>
+          <app-recently-listed></app-recently-listed>
+        </div>
+        <div class="col-lg-6 col-12 __contenedor-sold mt-lg-0 mt-3">
+          <label for="" class="mb-2 text-white h4">Recently sold</label>
+          <app-recently-sold></app-recently-sold>
+        </div>
+      </div>
     </div>
   </div>
 </div>
