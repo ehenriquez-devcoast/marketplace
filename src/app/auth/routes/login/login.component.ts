@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
@@ -8,10 +9,13 @@ import {
   FormControl,
 } from '@angular/forms';
 
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import {
+  formatDate,
+  isPlatformBrowser,
+  isPlatformServer,
+} from '@angular/common';
 
 import { ethers } from 'ethers';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,6 +36,11 @@ export class LoginComponent implements OnInit {
    * Firma
    */
   signer: any;
+
+  /**
+   * Mensaje que irá en la firma
+   */
+  menssagge: string;
 
   /**
    * Nombre de la billetera
@@ -74,6 +83,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _formbuilder: FormBuilder,
+    private _login: LoginService,
     @Inject(PLATFORM_ID) private _platformId: Object
   ) {
     /**
@@ -85,14 +95,8 @@ export class LoginComponent implements OnInit {
         /**
          * Obteniendo el proveedor de la cuenta. Un proveedor en ethers es una abstracción de solo lectura para acceder a los datos de blockchain.
          */
-        this.provider = new ethers.providers.JsonRpcProvider(
-          'HTTP://127.0.0.1:7545'
-        );
-        /**
-         * Obteniendo la interface del contrato
-         */
-        this.interfaceContract = new ethers.utils.Interface(this.iface);
-        // Para esto, necesitamos el firmante de la cuenta ...
+        this.provider = new ethers.providers.Web3Provider(window['ethereum']);
+
         this.signer = this.provider.getSigner();
         console.log('MetaMask is installed!');
       }
@@ -106,6 +110,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.initFormLogin();
     this.eventoMetamaskEthers();
+    this.getMensaje();
   }
 
   /**
@@ -144,8 +149,32 @@ export class LoginComponent implements OnInit {
    * Login metamask
    */
   async singUpMetamask() {
-    // await window['ethereum'].request({ method: 'eth_requestAccounts' });
-    this.signer.connect();
+    // Iniciando el metamask
+    await window['ethereum'].request({ method: 'eth_requestAccounts' });
+    // Firmando el mensaje
+    await this.signer.signMessage(this.menssagge).then(
+      (res: any) => {
+        console.log(res);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+    // const block = await this.provider.getBlockNumber();
+    // console.log(block);
+  }
+
+  async getMensaje() {
+    await this._login
+      .getMessagge()
+      .toPromise()
+      .then((res) => {
+        // console.log(res);
+        this.menssagge = res['result'];
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   /**
@@ -153,17 +182,15 @@ export class LoginComponent implements OnInit {
    */
   async eventoMetamaskEthers() {
     // this.provider.getCode();
-    await this.signer
-      .getAddress()
-      .then((data) => {
-        this.getNameAddres(data);
-        // this.addressWallet = data;
-        console.log(data);
-        // console.log(this.nameSigner);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // await this.signer
+    //   .getAddress()
+    //   .then((data) => {
+    //     this.getNameAddres(data);
+    //     console.log(data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   /**
