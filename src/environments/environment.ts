@@ -2,8 +2,16 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const baseUrl = 'http://18.117.83.168:8081/auth/';
+const prodUrl = 'https://api.test.anfrilabs.com/blockchain/auth/';
+
 export const environment = {
-  production: false
+  production: false,
+
+  login: {
+    loginMessage: prodUrl + 'requestLoginMessage',
+    loginSingUp: prodUrl + 'login',
+  },
 };
 
 /*

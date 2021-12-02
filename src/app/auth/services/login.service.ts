@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -7,9 +8,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LoginService {
   constructor(private _http: HttpClient) {}
 
-  getMessagge() {
+  getMessage(wallet) {
     return this._http.get(
-      'http://18.117.83.168:8081/auth/requestLoginMessage?ethAddress=0x014334C5c94051A21d50cDdAD77D2Db0098786B9'
+      environment.login.loginMessage + `?ethAddress=${wallet}`
     );
   }
+
+  singUp(ethAddress: string, signature: string) {
+    const form = `?ethAddress=${ethAddress}&signature=${signature}`;
+    return this._http.get(environment.login.loginSingUp + form);
+  }
+}
+
+export interface login {
+  ethAddress: string;
+  signature: string;
 }
