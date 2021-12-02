@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+
 import { SweetalertService } from './../../../shared/services/sweetalert.service';
 import { LoginService } from './../../services/login.service';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 // import {
@@ -87,6 +89,7 @@ export class LoginComponent implements OnInit {
     // private _formbuilder: FormBuilder,
     private _login: LoginService,
     private _alert: SweetalertService,
+    private _router: Router,
     @Inject(PLATFORM_ID) private _platformId: Object
   ) {
     /**
@@ -106,7 +109,10 @@ export class LoginComponent implements OnInit {
         );
         console.log('MetaMask is installed!');
       } else {
-        this._alert.errorMessage('Install metamask to continue', null);
+        this._alert.errorMessage(
+          'nstall metamask to be able to start session',
+          null
+        );
       }
     }
     if (isPlatformServer(this._platformId)) {
@@ -136,7 +142,7 @@ export class LoginComponent implements OnInit {
   // }
 
   /**
-   * controls
+   * controls del login
    */
   // get f() {
   //   return this.loginForm.controls;
@@ -161,30 +167,54 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         console.log(res);
         console.log(this.wallet);
-        this._alert.successMessage('Se ha iniciado sesión', null);
         /**
-         * Iniciando sesión
+         * Iniciando sesión con los datos de la cartera y la respuesta de la firma
+         * @param res
          */
-        this._login
-          .singUp(this.wallet, res)
-          .toPromise()
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        this.logIn(res);
       },
       (error: any) => {
         if ((error['code'] = 4001)) {
           this._alert.errorMessage('Error', error['message']);
+        } else {
+          this._alert.errorMessage(
+            'Error',
+            'Unknown error, consult an administrator'
+          );
         }
       }
     );
-    // const block = await this.provider.getBlockNumber();
-    // console.log(block);
   }
 
+  /**
+   * Iniciando sesión
+   */
+  logIn(res: any) {
+    this._login
+      .singUp(this.wallet, res)
+      .toPromise()
+      .then((data) => {
+        if (isPlatformBrowser(this._platformId)) {
+          localStorage.setItem('token', data['result']);
+          this._alert.successMessage('Successful login', null);
+          this._router.navigate(['/']);
+        } else {
+          this._alert.errorMessage(
+            'There was an error logging in',
+            'PlatformBrowser Error'
+          );
+        }
+
+        console.log(data['result']);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  /**
+   * Obtener el mensaje que envía el back para hacer la firma
+   */
   async getMensaje() {
     console.log(this.wallet);
 
@@ -200,16 +230,3 @@ export class LoginComponent implements OnInit {
       });
   }
 }
-
-interface ConnectInfo {
-  chainId: string;
-}
-
-/**
- * Otras ayudas:
- * Obtenemos la cantidad de eth de una cartera
- * const res = await this.provider.getBalance(
-      '0x2023FBD87a82D120fD139e33aFe43371d868D679'
-    );
- * 
- */

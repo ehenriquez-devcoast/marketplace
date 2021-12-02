@@ -1,4 +1,5 @@
-import { TokenService } from './../services/token.service';
+import { TokenService } from './../../auth/services/token.service';
+
 import { Injectable } from '@angular/core';
 import {
   Router,
@@ -20,8 +21,8 @@ export class LoginGuard implements CanActivate {
    */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const token = this.tokenService.getToken();
-    if (token) {
-      this.router.navigate(['/dashboard']);
+    if (token != null) {
+      this.router.navigate(['/']);
       return false;
     }
     return true;

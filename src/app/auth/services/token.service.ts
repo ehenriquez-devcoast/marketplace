@@ -1,15 +1,18 @@
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
+import 'localstorage-polyfill';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
   constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private _platformId: Object
+    @Inject(PLATFORM_ID) private _platformId: Object,
+    private router: Router
   ) {}
+
+  local;
 
   /**
    * Obtiene el token de autenticacion del local storage
@@ -17,11 +20,8 @@ export class TokenService {
   getToken() {
     if (isPlatformBrowser(this._platformId)) {
       return localStorage.getItem('token');
-    }
-    if (isPlatformServer(this._platformId)) {
-      return console.log('No hay accesso al localstorage');
-      // Server side code.
-      // https://github.com/angular/universal#universal-gotchas
+    } else {
+      return null;
     }
   }
   /**
@@ -31,11 +31,8 @@ export class TokenService {
   setToken(value: string) {
     if (isPlatformBrowser(this._platformId)) {
       return localStorage.setItem('token', value);
-    }
-    if (isPlatformServer(this._platformId)) {
-      return console.log('No hay accesso al localstorage');
-      // Server side code.
-      // https://github.com/angular/universal#universal-gotchas
+    } else {
+      return null;
     }
   }
   /**
@@ -45,11 +42,8 @@ export class TokenService {
   removeToken() {
     if (isPlatformBrowser(this._platformId)) {
       return localStorage.removeItem('token');
-    }
-    if (isPlatformServer(this._platformId)) {
-      return console.log('No hay accesso al localstorage');
-      // Server side code.
-      // https://github.com/angular/universal#universal-gotchas
+    } else {
+      return null;
     }
   }
 

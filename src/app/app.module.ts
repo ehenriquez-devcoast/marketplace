@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 // Cookie
 
 // Interceptors
-import { AuthInterceptorService } from './auth/guards/auth-interceptor.service';
+import { AuthInterceptorService } from './shared/guards/auth-interceptor.service';
 
 import {
   HttpClientModule,
@@ -19,7 +19,6 @@ import {
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-
     HttpClientModule,
     AppRoutingModule,
   ],
