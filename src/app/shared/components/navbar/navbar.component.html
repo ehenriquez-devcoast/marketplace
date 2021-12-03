@@ -94,15 +94,41 @@
         </li>
         <li class="nav-item d-block d-lg-none mt-5">
           <a
+            *ngIf="!valdationLoginOrProfile"
             routerLink="/login"
             class="nav-link btn bg-primary h-100 px-lg-3 px-0 login"
           >
             <span class="mt-1"> <i class="fas fa-sign-in-alt"></i>Login </span>
           </a>
+          <a
+            *ngIf="valdationLoginOrProfile"
+            routerLink="/profile"
+            class="nav-link btn bg-transparent h-100 px-lg-3 px-0 login"
+          >
+            <div class="d-flex flex-wrap align-items-center">
+              <i
+                class="far fa-user-circle"
+                style="font-size: var(--font-size-24)"
+              ></i>
+
+              <div class="d-flex flex-column text-end">
+                <label>Account</label>
+                <label
+                  style="
+                    font-size: var(--font-size-10);
+                    color: var(--color-gray-2);
+                  "
+                >
+                  {{ wallet | slice: 0:5 }}...{{ wallet | slice: -4 }}
+                </label>
+              </div>
+            </div>
+          </a>
         </li>
       </ul>
       <form class="d-flex w-100 justify-content-end">
         <a
+          *ngIf="!valdationLoginOrProfile"
           routerLink="/login"
           class="
             d-lg-block d-none
@@ -118,6 +144,40 @@
           "
         >
           <i class="fas fa-sign-in-alt"></i>Login
+        </a>
+        <a
+          *ngIf="valdationLoginOrProfile"
+          routerLink="/profile"
+          class="
+            d-lg-block d-none
+            login
+            nav-link
+            rounded-0
+            btn
+            bg-transparent
+            d-flex
+            h-100
+            px-lg-3 px-0
+          "
+        >
+          <div class="d-flex flex-wrap align-items-center">
+            <i
+              class="far fa-user-circle"
+              style="font-size: var(--font-size-24)"
+            ></i>
+
+            <div class="d-flex flex-column text-end">
+              <label>Account</label>
+              <label
+                style="
+                  font-size: var(--font-size-10);
+                  color: var(--color-gray-2);
+                "
+              >
+                {{ wallet | slice: 0:5 }}...{{ wallet | slice: -4 }}
+              </label>
+            </div>
+          </div>
         </a>
       </form>
     </div>

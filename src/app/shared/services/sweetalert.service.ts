@@ -14,7 +14,7 @@ export class SweetalertService {
       title: _title,
       text: _description,
       showConfirmButton: false,
-      timer: 1500,
+      timer: 4000,
     });
   }
 
@@ -25,7 +25,7 @@ export class SweetalertService {
       title: _title,
       text: _description,
       showConfirmButton: false,
-      timer: 2000,
+      timer: 5000,
     });
   }
 }

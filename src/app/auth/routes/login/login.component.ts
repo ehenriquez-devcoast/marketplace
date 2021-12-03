@@ -103,9 +103,10 @@ export class LoginComponent implements OnInit {
          */
         this.provider = new ethers.providers.Web3Provider(window['ethereum']);
         this.signer = this.provider.getSigner();
+        // Obteniendo la billetera, importante!
         this.signer.getAddress().then(
           (data) => (this.wallet = data),
-          (error) => console.log(error)
+          (error) => console.log('No se ha iniciando sesión')
         );
         console.log('MetaMask is installed!');
       } else {
@@ -160,38 +161,67 @@ export class LoginComponent implements OnInit {
    */
   async singUpMetamask() {
     // Iniciando el metamask
-    await this.getMensaje();
     await window['ethereum'].request({ method: 'eth_requestAccounts' });
-    // Firmando el mensaje
-    await this.signer.signMessage(this.menssage).then(
-      (res: any) => {
-        console.log(res);
-        console.log(this.wallet);
-        /**
-         * Iniciando sesión con los datos de la cartera y la respuesta de la firma
-         * @param res
-         */
-        this.logIn(res);
+    // Onteniendo la billetera y se firma el mensaje
+    await this.getAddres();
+  }
+
+  /**
+   * Obtener la billetera para iniciar sesión
+   */
+  async getAddres() {
+    await this.signer.getAddress().then(
+      (data: string) => {
+        this.getMensaje(data);
       },
-      (error: any) => {
-        if ((error['code'] = 4001)) {
-          this._alert.errorMessage('Error', error['message']);
-        } else {
-          this._alert.errorMessage(
-            'Error',
-            'Unknown error, consult an administrator'
-          );
-        }
+      (error) => {
+        console.log('No se ha iniciando sesión');
       }
     );
   }
 
   /**
+   * Obtener el mensaje que envía el back para hacer la firma
+   */
+  async getMensaje(wallet) {
+    console.log(wallet);
+    // Pimero obtenemos el mensaje dle back
+    await this._login
+      .getMessage(wallet)
+      .toPromise()
+      .then((res) => {
+        const respuesta = res['result'];
+        // Luego convertimos el mensaje en una firma
+        this.signer.signMessage(respuesta).then(
+          (data: any) => {
+            /**
+             * Iniciando sesión con los datos de la cartera y la respuesta de la firma
+             */
+            this.logIn(wallet, data);
+          },
+          (error: any) => {
+            if ((error['code'] = 4001)) {
+              this._alert.errorMessage('Error', error['message']);
+            } else {
+              this._alert.errorMessage(
+                'Error',
+                'Unknown error, consult an administrator'
+              );
+            }
+          }
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  /**
    * Iniciando sesión
    */
-  logIn(res: any) {
-    this._login
-      .singUp(this.wallet, res)
+  async logIn(wallet: string, res: string) {
+    await this._login
+      .singUp(wallet, res)
       .toPromise()
       .then((data) => {
         if (isPlatformBrowser(this._platformId)) {
@@ -206,24 +236,6 @@ export class LoginComponent implements OnInit {
         }
 
         console.log(data['result']);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  /**
-   * Obtener el mensaje que envía el back para hacer la firma
-   */
-  async getMensaje() {
-    console.log(this.wallet);
-
-    await this._login
-      .getMessage(this.wallet)
-      .toPromise()
-      .then((res) => {
-        console.log(res);
-        this.menssage = res['result'];
       })
       .catch((error) => {
         console.log(error);
