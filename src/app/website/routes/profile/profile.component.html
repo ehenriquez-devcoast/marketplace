@@ -1,1 +1,69 @@
-<p>profile works!</p>
+<div class="container __contenedor w-100 vh-100" *ngIf="isBrowser">
+  <div class="__contenedor-data">
+    <div
+      class="
+        __header
+        mt-5
+        d-flex
+        justify-content-between
+        align-items-center
+        flex-wrap
+      "
+    >
+      <div
+        class="d-flex justify-content-center flex-column p-2 w-auto bg-primary"
+      >
+        <div class="card">
+          <div class="card-body">
+            <button (click)="openModal(template)" class="btn-primary btn">
+              Scan QR
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-center flex-column p-2 w-auto bg-success"
+      >
+        <div class="card">
+          <div class="card-body"></div>
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-center flex-column p-2 w-auto bg-warning"
+      >
+        <div class="card">
+          <div class="card-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DEL QR -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Scan the QR code from your game</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div
+    class="
+      modal-body
+      d-flex
+      justify-content-center
+      align-items-center
+      flex-column
+    "
+  >
+    <qrcode [qrdata]="token" [size]="200" [level]="'M'" #parent></qrcode>
+    <button class="btn btn-secondary" (click)="saveAsImage(parent)">
+      Download image
+    </button>
+  </div>
+</ng-template>

@@ -11,7 +11,8 @@
     "dev:ssr": "ng run marketplace:serve-ssr",
     "serve:ssr": "node dist/marketplace/server/main.js",
     "build:ssr": "ng build --prod && ng run marketplace:server:production",
-    "prerender": "ng run marketplace:prerender"
+    "prerender": "ng run marketplace:prerender",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,7 @@
     "@angular/router": "~11.0.6",
     "@nguniversal/express-engine": "^11.0.1",
     "@popperjs/core": "^2.10.2",
+    "angularx-qrcode": "^11.0.0",
     "bootstrap": "^5.1.3",
     "ethers": "^5.5.1",
     "express": "^4.15.2",

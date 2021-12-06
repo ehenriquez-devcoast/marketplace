@@ -7,14 +7,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+// ngx-boostrap-Modal
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [NavbarComponent],
   imports: [
     CommonModule,
+    ModalModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+
     SharedRoutingModule,
   ],
-  exports: [FormsModule, ReactiveFormsModule, NavbarComponent],
+  exports: [FormsModule, ModalModule, ReactiveFormsModule, NavbarComponent],
 })
 export class SharedModule {}

@@ -18,6 +18,8 @@ import { ItemDetailsComponent } from './routes/item-details/item-details.compone
 import { BundleDetailsComponent } from './routes/bundle-details/bundle-details.component';
 import { InfoVolumeComponent } from './components/info-volume/info-volume.component';
 
+import { QRCodeModule } from 'angularx-qrcode';
+
 @NgModule({
   declarations: [
     IndexComponent,
@@ -35,6 +37,6 @@ import { InfoVolumeComponent } from './components/info-volume/info-volume.compon
     BundleDetailsComponent,
     InfoVolumeComponent,
   ],
-  imports: [CommonModule, WebsiteRoutingModule, SharedModule],
+  imports: [CommonModule, QRCodeModule, WebsiteRoutingModule, SharedModule],
 })
 export class WebsiteModule {}
