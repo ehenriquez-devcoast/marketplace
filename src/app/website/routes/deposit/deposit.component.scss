@@ -1,0 +1,52 @@
+.container__data {
+  padding-block: 7%;
+}
+
+.card {
+  background-color: var(--color-gray-6);
+}
+
+i {
+  font-size: 20px;
+  color: white;
+}
+
+#button-animated {
+  background-color: var(--color-gray-6);
+  border-color: var(--color-gray-1);
+  font-size: 20px;
+}
+
+#dropdown-animated {
+  background-color: var(--color-gray-6);
+  border-color: var(--color-gray-1);
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.__amount {
+  background-color: var(--color-gray-6);
+  border-color: var(--color-gray-1);
+  font-size: 20px;
+  color: white;
+}
+
+.__amount-max {
+  background-color: var(--color-gray-1);
+
+  font-size: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.dropdown:focus,
+.__amount:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}

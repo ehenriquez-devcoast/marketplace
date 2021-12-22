@@ -5,6 +5,8 @@ import { LandDetailsComponent } from './routes/land-details/land-details.compone
 import { ItemDetailsComponent } from './routes/item-details/item-details.component';
 import { BundleDetailsComponent } from './routes/bundle-details/bundle-details.component';
 
+import { DepositComponent } from './routes/deposit/deposit.component';
+import { WithdrawComponent } from './routes/withdraw/withdraw.component';
 import { LandComponent } from './routes/land/land.component';
 import { ItemComponent } from './routes/item/item.component';
 import { ProfileComponent } from './routes/profile/profile.component';
@@ -58,6 +60,14 @@ const routes: Routes = [
       {
         path: 'land/:id',
         component: LandDetailsComponent,
+      },
+      {
+        path: 'deposit',
+        component: DepositComponent,
+      },
+      {
+        path: 'withdraw',
+        component: WithdrawComponent,
       },
     ],
   },

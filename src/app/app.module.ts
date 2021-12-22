@@ -15,11 +15,15 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 
+// animation
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
   ],
   providers: [

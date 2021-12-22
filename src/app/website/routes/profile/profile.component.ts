@@ -8,6 +8,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import * as abiData from '../../json/abitokens.json';
 
 import { ethers } from 'ethers';
 
@@ -35,6 +36,11 @@ export class ProfileComponent implements OnInit {
   wallet: string;
 
   /**
+   * Contrato
+   */
+  contract: any;
+
+  /**
    * Cantidad de ETH
    */
   ethMount: string;
@@ -43,6 +49,17 @@ export class ProfileComponent implements OnInit {
    * Cantidad del ANFRITOKEN
    */
   anfriToken: string;
+
+  /**
+   * Abi
+   */
+  abi = abiData['default'];
+
+  /**
+   * address contract
+   */
+  contractAddress: string = '0xF009B6634697DC6012827201A9fA7eF89DbD9b6b';
+  // 0x3da76A4f1845b4D104e0B310A6F57F3A77D1b53a
 
   /**
    * Provppvedor
@@ -58,11 +75,14 @@ export class ProfileComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     private _alert: SweetalertService,
     private modalService: BsModalService
-  ) {
-    this.getDataBlockchainMetamask();
-  }
+  ) {}
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    await this.getDataBlockchainMetamask();
+    await this.getBalance();
+    await this.getBalanceETH();
+    console.log(this.contract);
+  }
 
   /**
    * Función donde trae todos los datos del metamask y la blockchain
@@ -79,6 +99,15 @@ export class ProfileComponent implements OnInit {
           window['ethereum']
         );
         this.signer = await this.provider.getSigner();
+        /**
+         * Contrato
+         */
+        this.contract = await new ethers.Contract(
+          this.contractAddress,
+          this.abi,
+          this.signer
+        );
+
         // Obteniendo la billetera, importante!
         await this.signer.getAddress().then(
           (data) => (this.wallet = data),
@@ -92,6 +121,41 @@ export class ProfileComponent implements OnInit {
         );
       }
     }
+  }
+
+  /**
+   * Obtener el balance anfri
+   */
+  async getBalance() {
+    console.log(this.wallet);
+
+    await this.contract.balanceOf(this.wallet).then(
+      (data) => {
+        const _hex: any = Object.values(data)[0];
+        this.anfriToken = ethers.utils.formatEther(_hex);
+
+        console.log(this.anfriToken);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  /**
+   * Obtener balance ETH
+   */
+  async getBalanceETH() {
+    this.signer.getBalance().then(
+      (res) => {
+        console.log(res);
+        const _hex: any = Object.values(res)[0];
+        this.ethMount = ethers.utils.formatEther(_hex);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   /**

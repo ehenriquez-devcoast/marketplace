@@ -1,0 +1,151 @@
+<div class="container">
+  <app-profile></app-profile>
+
+  <div
+    class="
+      container__data
+      d-flex
+      vh-100
+      w-100
+      flex-column
+      animate__fadeIn animate__animated
+    "
+    *ngIf="!showLoading"
+  >
+    <!-- TITTLE -->
+    <div class="d-flex w-100 justify-content-center">
+      <span class="text-center text-white fw-bold" style="font-size: 40px"
+        >Buy Anfri</span
+      >
+    </div>
+    <!-- // TITTLE -->
+    <div class="d-flex justify-content-center w-100">
+      <div class="d-flex col-lg-6 col-12 flex-column">
+        <!-- FROM TO -->
+        <!-- <div
+        class="
+          justify-content-lg-between
+          align-items-center
+          d-flex
+          flex-wrap
+          justify-content-center
+          w-100
+        "
+      >
+        <div class="col-lg-auto col-12">
+          <span class="text-uppercase text-muted">from</span>
+          <div class="card mt-2">
+            <div class="card-body d-flex align-items-center">
+              <i class="fab fa-ethereum" style="color: var(--color-gray-2)"></i>
+              <label class="mx-3"> 0xd9136…dea12. </label>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-arrow-right d-lg-block d-none"></i>
+        <i class="fas fa-arrow-down d-lg-none d-block my-3"></i>
+        <div class="col-lg-auto col-12">
+          <span class="text-uppercase text-muted">to</span>
+          <div class="card mt-2">
+            <div class="card-body">
+              <i class="fas fa-dragon"></i>
+              <label class="mx-3"> ANFRI NETWORK. </label>
+            </div>
+          </div>
+        </div>
+      </div> -->
+        <!-- // FROM TO -->
+        <!-- ASSET -->
+        <div class="btn-group mt-4 d-flexn flex-column" dropdown>
+          <span class="text-uppercase text-muted">ASSET</span>
+          <button
+            id="button-animated"
+            dropdownToggle
+            type="button"
+            class="
+              dropdown
+              mt-2
+              btn btn-primary
+              dropdown-toggle
+              d-flex
+              justify-content-between
+              align-items-center
+            "
+            aria-controls="dropdown-animated"
+          >
+            <div class="d-flex align-items-center" value="0">
+              <i class="fab fa-ethereum" style="color: var(--color-gray-2)"></i>
+              <span class="mx-2">Ethereum</span>
+            </div>
+            <span class="caret"></span>
+          </button>
+          <ul
+            id="dropdown-animated"
+            *dropdownMenu
+            class="dropdown-menu col-12"
+            role="menu"
+            aria-labelledby="button-animated"
+          >
+            <li
+              role="menuitem"
+              class="text-white px-2 d-flex align-items-center"
+              value="0"
+            >
+              <i class="fab fa-ethereum" style="color: var(--color-gray-2)"></i>
+              <span class="mx-2">Ethereum</span>
+            </li>
+          </ul>
+        </div>
+        <!-- // ASSET -->
+        <form [formGroup]="formularioCompra" (ngSubmit)="comprar()">
+          <!-- AMOUNT -->
+          <div class="d-flex flex-column mt-3">
+            <span class="text-uppercase text-muted">amount to buy</span>
+            <div class="input-group mt-2">
+              <input
+                type="text"
+                class="form-control col-12 __amount"
+                (ngModelChange)="operationReciveChange($event)"
+                formControlName="amount"
+              />
+              <button
+                class="btn text-black __amount-max"
+                type="button"
+                id="button-addon2"
+              >
+                max
+              </button>
+            </div>
+            <span class="text-muted italic mt-1"
+              >Price: {{ valueAnfri }} ETH</span
+            >
+          </div>
+          <!-- // AMOUNT -->
+          <!-- RECIVE -->
+          <div class="d-flex flex-column mt-3">
+            <span class="text-uppercase text-muted"> amount to be paid</span>
+            <input
+              type="text"
+              class="form-control mt-2 col-12 __amount"
+              formControlName="recive"
+            />
+          </div>
+          <!-- // RECIVE -->
+
+          <!-- SUBMIT -->
+          <div class="d-flex justify-content-center mt-3">
+            <button type="submit" class="btn btn-outline-light text-capitalize">
+              Confirm
+            </button>
+          </div>
+          <!-- // SUBMIT -->
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- LOADING -->
+  <app-loading
+    *ngIf="showLoading"
+    class="animate__fadeIn animate__animated"
+  ></app-loading>
+  <!-- LOADING -->
+</div>

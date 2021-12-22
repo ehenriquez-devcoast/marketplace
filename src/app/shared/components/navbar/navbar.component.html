@@ -23,6 +23,8 @@
         <li class="nav-item">
           <button
             class="
+              d-lg-block d-none
+              h-100
               align-items-center
               nav-link
               w-100
@@ -39,24 +41,46 @@
             aria-expanded="false"
           >
             <i class="fas fa-th-large text-white"></i>
-            <span class="d-block d-lg-none">Products</span>
+            <span class="">Bridge</span>
+          </button>
+          <button
+            class="
+              d-block d-lg-none
+              align-items-center
+              nav-link
+              w-100
+              dropdown-toggle
+              btn
+              text-white
+              bg-transparent
+              d-flex
+            "
+            href="#"
+            id="navbarDarkDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-th-large text-white"></i>
+            <span class="">Bridge</span>
           </button>
           <ul
             class="dropdown-menu border-0 rounded-0 pt-0 pt-lg-2"
             aria-labelledby="navbarDarkDropdownMenuLink"
           >
-            <li><a class="dropdown-item text-white" href="#">Action</a></li>
             <li>
-              <a class="dropdown-item text-white" href="#">Another action</a>
+              <a class="dropdown-item text-white" routerLink="/deposit"
+                >Deposit</a
+              >
             </li>
             <li>
-              <a class="dropdown-item text-white" href="#"
-                >Something else here</a
+              <a class="dropdown-item text-white" routerLink="/withdraw"
+                >Withdraw</a
               >
             </li>
           </ul>
         </li>
-        <!-- DROPDOWN -->
+        <!-- // DROPDOWN -->
         <li class="nav-item">
           <a
             routerLink=""

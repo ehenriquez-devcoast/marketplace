@@ -1,4 +1,4 @@
-<div class="container __contenedor w-100 vh-100" *ngIf="isBrowser">
+<div class="container __contenedor" *ngIf="isBrowser">
   <div class="__contenedor-data">
     <div
       class="
@@ -10,7 +10,82 @@
         flex-wrap
       "
     >
-      <div
+      <div class="card bg-transparent col-12">
+        <div class="card-body p-0">
+          <!-- INFORMACIÓN DEL CANTIDAD DE AFRIN / ETHEREUM / QR  -->
+          <div
+            class="
+              justify-content-start
+              d-flex
+              justify-content-lg-around
+              flex-wrap
+              __info
+              text-uppercase
+              py-lg-5
+              px-lg-0
+              p-4
+            "
+          >
+            <!-- DATOS DE TOTAL ANFRI -->
+            <div class="__info-totalSale d-flex flex-wrap">
+              <svg width="50" height="50" viewBox="0 0 50 50">
+                <g fill="none" fill-rule="evenodd">
+                  <circle fill="#2BBAA7" cx="25" cy="25" r="25"></circle>
+                  <path
+                    d="M38.344 32.5c.36 0 .656.295.656.656v2.188c0 .36-.295.656-.656.656H11.656a.658.658 0 01-.656-.656V15.656c0-.36.295-.656.656-.656h2.188c.36 0 .656.295.656.656V32.5h23.844zm-6.962-12.277l-4.632 3.09-4.665-6.218a.657.657 0 00-1.088.054l-4.747 7.913v5.688h21l-4.916-10.27a.656.656 0 00-.952-.257z"
+                    fill="#FFF"
+                    fill-rule="nonzero"
+                  ></path>
+                </g>
+              </svg>
+              <div class="d-flex flex-column __info-datos align-items-start">
+                <label class="__info-title_info">Anfri Tokens</label>
+                <label class="__info-value-info mt-auto">{{
+                  anfriToken
+                }}</label>
+              </div>
+            </div>
+            <!-- // DATOS DE TOTAL ANFRI -->
+            <!-- DATOS DE TOTAL DE ETHEREUM -->
+            <div class="__info-totalVolumen d-flex flex-wrap mt-lg-0 mt-4">
+              <svg width="50" height="50" viewBox="0 0 50 50">
+                <g fill="none" fill-rule="evenodd">
+                  <circle fill="#4D70E7" cx="25" cy="25" r="25"></circle>
+                  <path
+                    d="M33.62 25.262l-8.307 5.075L17 25.262 25.313 11l8.307 14.262zm-8.307 6.705L17 26.892 25.313 39l8.312-12.108-8.313 5.075z"
+                    fill="#FFF"
+                    fill-rule="nonzero"
+                  ></path>
+                </g>
+              </svg>
+              <div class="d-flex flex-column __info-datos align-items-start">
+                <label class="__info-title_info">Ethereum</label>
+                <div class="mt-auto">
+                  <label class="__info-value-info fw-bold">Ξ</label>
+                  <label class="__info-value-info mx-1">{{ ethMount }}</label>
+                </div>
+              </div>
+            </div>
+            <!-- // DATOS DE TOTAL DE ETHEREUM -->
+            <!-- DESCARGAR QR -->
+            <div
+              class="
+                __info-sold
+                d-flex
+                flex-wrap
+                mt-lg-0 mt-4
+                justify-content-lg-start justify-content-center
+                col-lg-auto col-12
+              "
+            >
+              <button (click)="openModal(template)" class="btn-primary btn">
+                Scan QR
+              </button>
+            </div>
+            <!-- DESCARGAR QR -->
+          </div>
+          <!-- INFORMACIÓN DEL CANTIDAD DE AFRIN / ETHEREUM / QR -->
+          <!-- <div
         class="d-flex justify-content-center flex-column p-2 w-auto bg-primary"
       >
         <div class="card">
@@ -33,6 +108,8 @@
       >
         <div class="card">
           <div class="card-body"></div>
+        </div>
+      </div> -->
         </div>
       </div>
     </div>

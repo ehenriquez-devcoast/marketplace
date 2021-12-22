@@ -56,35 +56,6 @@ export class LoginComponent implements OnInit {
    */
   addressWallet: string;
 
-  /**
-   * Interface para el contrato
-   */
-  iface = [
-    // Constructor
-    'constructor(string symbol, string name)',
-
-    // State mutating method
-    'function transferFrom(address from, address to, uint amount)',
-
-    // State mutating method, which is payable
-    'function mint(uint amount) payable',
-
-    // Constant method (i.e. "view" or "pure")
-    'function balanceOf(address owner) view returns (uint)',
-
-    // An Event
-    'event Transfer(address indexed from, address indexed to, uint256 amount)',
-
-    // A Custom Solidity Error
-    'error AccountLocked(address owner, uint256 balance)',
-
-    // Examples with structured types
-    'function addUser(tuple(string name, address addr) user) returns (uint id)',
-    'function addUsers(tuple(string name, address addr)[] user) returns (uint[] id)',
-    'function getUser(uint id) view returns (tuple(string name, address addr) user)',
-  ];
-  interfaceContract: any;
-
   constructor(
     // private _formbuilder: FormBuilder,
     private _login: LoginService,
@@ -111,7 +82,7 @@ export class LoginComponent implements OnInit {
         console.log('MetaMask is installed!');
       } else {
         this._alert.errorMessage(
-          'nstall metamask to be able to start session',
+          'Install metamask to be able to start session',
           null
         );
       }
@@ -184,16 +155,19 @@ export class LoginComponent implements OnInit {
    * Obtener el mensaje que envía el back para hacer la firma
    */
   async getMensaje(wallet) {
-    console.log(wallet);
+    // console.log(wallet);
     // Pimero obtenemos el mensaje dle back
     await this._login
       .getMessage(wallet)
       .toPromise()
       .then((res) => {
         const respuesta = res['result'];
+        // console.log(res);
+
         // Luego convertimos el mensaje en una firma
         this.signer.signMessage(respuesta).then(
           (data: any) => {
+            // console.log(data);
             /**
              * Iniciando sesión con los datos de la cartera y la respuesta de la firma
              */
@@ -220,6 +194,7 @@ export class LoginComponent implements OnInit {
    * Iniciando sesión
    */
   async logIn(wallet: string, res: string) {
+    // console.log(res);
     await this._login
       .singUp(wallet, res)
       .toPromise()
@@ -235,7 +210,7 @@ export class LoginComponent implements OnInit {
           );
         }
 
-        console.log(data['result']);
+        // console.log(data['result']);
       })
       .catch((error) => {
         console.log(error);
